@@ -1,0 +1,106 @@
+<div class="page-header">
+  <div class="container">
+    <h1>{{header}}</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row top-row">
+    <div class="col-xs-8 row end-xs">
+      <a routerLink="/employees" color="primary" mat-raised-button>
+        <mat-icon >chevron_left</mat-icon>
+        Go Back
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <form #employeeDetailsForm="ngForm" >
+        <div class="row">
+          <div class="col-xs-6">
+            <mat-form-field appearance="fill">
+              <mat-label>First Name : </mat-label>
+              <input type="firstname" matInput [(ngModel)]="employee.firstName" name="firstname">
+            </mat-form-field>
+          </div>
+          <div class="col-xs-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Last Name : </mat-label>
+              <input type="lastname" matInput [(ngModel)]="employee.lastName" name="lastname">
+            </mat-form-field>
+          </div>
+        </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <mat-form-field appearance="fill">
+                <mat-label>Date Of Birth</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="employee.dateOfBirth" name="dateOfBirth">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <mat-form-field appearance="fill">
+                <mat-label>Mobile No : </mat-label>
+                <input type="number" matInput [(ngModel)]="employee.mobile" name="mobile">
+              </mat-form-field>
+            </div>
+            <div class="col-xs-6">
+              <mat-form-field appearance="fill">
+                <mat-label>Email : </mat-label>
+                <input type="email" matInput [(ngModel)]="employee.email" name="email">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <mat-form-field appearance="fill">
+                <mat-label>Address : </mat-label>
+                <textarea name="address" id="" cols="30" rows="3" matInput [(ngModel)]="employee.address" name="address"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <mat-form-field appearance="fill">
+                <mat-label>Role : </mat-label>
+                <mat-select [(ngModel)]="employee.roleId" name="roleId">
+                   <mat-option *ngFor="let role of roleList" [value]="role.roleID">
+                    {{role.roleID}} - {{role.desciption}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <mat-form-field appearance="fill">
+                <mat-label>Department : </mat-label>
+                <mat-select [(ngModel)]="employee.deptId" name="deptId">
+                   <mat-option *ngFor="let dept of deptList" [value]="dept.departmentID">
+                    {{dept.departmentID}} - {{dept.desciption}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="row between-xs" *ngIf="!isNew">
+                <button mat-raised-button color="primary" (click)="onUpdate()">Save</button>
+
+                <button mat-raised-button color="accent" (click)="onDelete()">Delete</button>
+              </div>
+              <div class="row between-xs" *ngIf="isNew">
+                <button mat-raised-button color="primary" (click)="onAdd()">Save</button>
+              </div>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
